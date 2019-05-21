@@ -1,0 +1,33 @@
+.bookCard {
+    width: 300px;
+    height: auto;
+    box-shadow: #e4e4e4 5px 5px 15px;
+    border-radius: 5px;
+    padding: 0em;
+    line-height: 1.5em;
+    display: grid;
+    grid-gap: 10px;
+    overflow: hidden;
+}
+
+
+.bookImg {
+    justify-self: center;
+}
+
+h2 {
+    justify-self: center;
+    font-size: 1rem;
+    background-color: #e0f1ff;
+    width: 100%;
+    padding: 1em;
+}
+
+p {
+    line-height: 1.2em;
+    padding: 0em 0.1em 1em 1em;
+}
+
+ul {
+    padding: 0em 1em;
+}
