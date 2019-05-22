@@ -6,23 +6,16 @@ class BookCard extends Component {
   state = {
     isLoding: true,
     bookInfo: null,
-    keyword: 'javascript',
-  }
-
-  keywordHandler = () => {
-    // this.setState({keyword: this.props.inputValue})
-    this.setState({keyword: 'jokes'})
   }
 
   componentDidMount() {
-    this.keywordHandler()
 
-    fetch(`https://www.googleapis.com/books/v1/volumes?q=${this.state.keyword}`)
+    fetch(`https://www.googleapis.com/books/v1/volumes?q=${this.props.keyword}`)
       .then(res => res.json())
       .then(data => console.log(data))
 
 
-    fetch(`https://www.googleapis.com/books/v1/volumes?q=${this.state.keyword}`)
+    fetch(`https://www.googleapis.com/books/v1/volumes?q=${this.props.keyword}`)
       .then(res => res.json())
       .then(data => {
        const bookInfo = data.items.map(el => {
@@ -43,27 +36,22 @@ class BookCard extends Component {
          </div>
          
          )
-          // this.setState({bookImage:  el.volumeInfo.imageLinks.smallThumbnail})
         })
            this.setState({bookInfo: bookInfo, isLoding: false}) 
       })
 
   }
 
-  
-
-  searchInput = () => {
-    this.componentDidMount()
+  componentDidUpdate(prevProps) {
+    console.log(prevProps)
+    if (this.props.keyword !== prevProps.keyword) {
+      this.componentDidMount()
+    }
+   
   }
 
-  searchHandler = () => {
-    this.props.search(this.searchInput())
-  }
-
- 
 
   render() {
-  
     return (
      this.state.isLoding ? <div>Loading...</div> :  this.state.bookInfo
     )

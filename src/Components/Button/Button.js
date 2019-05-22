@@ -2,10 +2,10 @@ import React from 'react'
 
 import './Button.module.css';
 
-const Button = () => {
+const Button = (props) => {
   return (
     <div>
-      <button type="button">Search</button>
+      <button type="button" onClick={props.bookSearchHandler}>Search</button>
     </div>
   )
 }

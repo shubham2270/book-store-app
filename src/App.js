@@ -8,13 +8,19 @@ import Button from './Components/Button/Button';
 
 class App extends Component {
 
-
-  inputValueHandler = (value) => {
-      return value
+  
+  state = {
+    keyword: 'javascript',
+    currentKeyword: ''
   }
 
-  searchHandler = () => {
+  inputValueHandler = (value) => {
+    this.setState({currentKeyword: value})
+  }
 
+  bookSearchHandler = () => {
+    this.setState({keyword: this.state.currentKeyword})
+    console.log('test')
   }
 
   render() {
@@ -22,12 +28,18 @@ class App extends Component {
       <div className="App">
       <h1>Book Store</h1>
       <div className="searchbar">
-         <SearchBar inputValueHandler={this.inputValueHandler}/>
-         <Button />
+         <SearchBar 
+          inputValueHandler={this.inputValueHandler}/>
+         <Button 
+           bookSearchHandler={this.bookSearchHandler}
+         />
       </div>
       <main className="book_card_wrapper">
           <BookCard 
-            search={this.searchHandler}
+            bookSearchHandler={this.bookSearchHandler}
+            keyword={this.state.keyword}
+            bookInfo={this.state.bookInfo}
+            isLoding={this.state.isLoding}
             inputValue={this.inputValueHandler}/>
       </main>
       </div>
