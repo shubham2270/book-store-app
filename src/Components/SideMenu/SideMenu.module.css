@@ -1,0 +1,7 @@
+.side_wrapper {
+    /* display: grid; */
+    border-right: solid var(--blue) 3px;
+    width: 250px;
+    padding: 10px;
+    margin-top: -40px;
+}

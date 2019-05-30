@@ -1,13 +1,22 @@
 .bookCard {
-    width: 300px;
+    width: 290px;
     height: auto;
-    box-shadow: #e4e4e4 5px 5px 15px;
+    box-shadow: #dfdfdf 2px 2px 5px;
     border-radius: 5px;
     padding: 0em;
     line-height: 1.5em;
     display: grid;
     grid-gap: 10px;
     overflow: hidden;
+    border: 2px solid var(--green);
+}
+
+.bookCard:hover h2 {
+    background-color: var(--green2);
+}
+
+.bookCard:hover {
+    border: 2px solid var(--green2);
 }
 
 
@@ -18,9 +27,10 @@
 h2 {
     justify-self: center;
     font-size: 1rem;
-    background-color: #e0f1ff;
+    background-color: var(--green);
     width: 100%;
     padding: 1em;
+    transition: 300ms;
 }
 
 p {

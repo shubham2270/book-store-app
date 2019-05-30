@@ -10,12 +10,12 @@ class BookCard extends Component {
 
   componentDidMount() {
 
-    fetch(`https://www.googleapis.com/books/v1/volumes?q=${this.props.keyword}`)
+    fetch(`https://www.googleapis.com/books/v1/volumes?q=${this.props.keyword}&orderBy=${this.props.sortBy}`)
       .then(res => res.json())
-      .then(data => console.log(data))
+      .then(data => console.log(data));
 
 
-    fetch(`https://www.googleapis.com/books/v1/volumes?q=${this.props.keyword}`)
+    fetch(`https://www.googleapis.com/books/v1/volumes?q=${this.props.keyword}&orderBy=${this.props.sortBy}`)
       .then(res => res.json())
       .then(data => {
        const bookInfo = data.items.map(el => {
@@ -24,7 +24,7 @@ class BookCard extends Component {
            
            <div className={styles.bookCard} key={el.id}>
            <h2>{el.volumeInfo.title}</h2>
-           <img src={imageLinks.smallThumbnail} alt="book-cover" className={styles.bookImg}/>
+           <img src={imageLinks.thumbnail} alt="book-cover" className={styles.bookImg}/>
            <ul>
              <li><strong>Author:</strong> {authors}</li>
              <li><strong>Publisher:</strong>{publisher}</li>
@@ -38,13 +38,15 @@ class BookCard extends Component {
          )
         })
            this.setState({bookInfo: bookInfo, isLoding: false}) 
+      }).catch(err => {
+           this.setState({bookInfo: 'Sorry no search result found! Please Try Again'}) 
+           console.log(err)
       })
 
   }
 
   componentDidUpdate(prevProps) {
-    console.log(prevProps)
-    if (this.props.keyword !== prevProps.keyword) {
+    if (this.props.keyword !== prevProps.keyword || this.props.sortBy !== prevProps.sortBy) {
       this.componentDidMount()
     }
    

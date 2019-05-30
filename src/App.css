@@ -1,3 +1,9 @@
+:root {
+  --blue: #2DE1FC;
+  --green: #2AFC98;
+  --green2: #09E85E;
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -8,7 +14,8 @@ html, body {
 
 .App {
   display: grid;
-  justify-content: center;
+  justify-items: center;
+  /* background-color: red; */
 }
 
 h1 {
@@ -19,10 +26,17 @@ h1 {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 1em;
+  padding: 2em;
 }
 
 .searchbar {
   display: flex;
-  justify-self: center;
+  /* justify-self: center; */
+  justify-content: center;
   align-items: center;
+}
+
+.main_wrapper {
+  display: grid;
+  grid-template-columns: 2fr auto;
 }
