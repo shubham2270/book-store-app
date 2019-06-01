@@ -15,7 +15,7 @@ class BookCard extends Component {
       .then(data => console.log(data));
 
 
-    fetch(`https://www.googleapis.com/books/v1/volumes?q=${this.props.keyword}&orderBy=${this.props.sortBy}`)
+    fetch(`https://www.googleapis.com/books/v1/volumes?q=${this.props.keyword}&orderBy=${this.props.sortBy}&printType=${this.props.printType}`)
       .then(res => res.json())
       .then(data => {
        const bookInfo = data.items.map(el => {
@@ -46,7 +46,7 @@ class BookCard extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.keyword !== prevProps.keyword || this.props.sortBy !== prevProps.sortBy) {
+    if (this.props.keyword !== prevProps.keyword || this.props.sortBy !== prevProps.sortBy || this.props.printType !== prevProps.printType) {
       this.componentDidMount()
     }
    

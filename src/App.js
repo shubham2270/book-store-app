@@ -12,7 +12,8 @@ class App extends Component {
   state = {
     keyword: 'food',
     currentKeyword: '',
-    sort: 'relevance'
+    sort: 'relevance',
+    print: 'all'
   }
 
   inputValueHandler = (value) => {
@@ -29,14 +30,22 @@ class App extends Component {
     })
   }
 
+  printRadioButtonHandler = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+
   render() {
     return (
       <div className="App">
       <NavBar />
      <div className="main_wrapper">
         <SideMenu 
-          checked={this.state.sort === "relevance"}
+          sortChecked={this.state.sort === "relevance"}
+          printChecked={this.state.print === "all"}
           sortRadioButtonHandler={this.sortRadioButtonHandler}
+          printRadioButtonHandler={this.printRadioButtonHandler}
         />
         <div>
           <div className="searchbar">
@@ -45,6 +54,7 @@ class App extends Component {
           </div>
           <main className="book_card_wrapper">
               <BookCard 
+                printType={this.state.print}
                 sortBy={this.state.sort}
                 bookSearchHandler={this.bookSearchHandler}
                 keyword={this.state.keyword}
