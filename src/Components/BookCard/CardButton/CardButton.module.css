@@ -1,0 +1,14 @@
+.button {
+    background-color: var(--blue);
+    padding: 6px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: 300ms;
+    font-size: 1.1rem;
+    color: black;
+}
+
+.button:hover {
+    background-color: var(--blue2);
+}

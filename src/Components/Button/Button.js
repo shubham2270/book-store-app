@@ -1,11 +1,11 @@
 import React from 'react'
 
-import './Button.module.css';
+import styles from './Button.module.css';
 
 const Button = (props) => {
   return (
     <div>
-      <button type="button" onClick={props.bookSearchHandler}>Search</button>
+      <button type="button" onClick={props.bookSearchHandler} className={styles.button}>Search</button>
     </div>
   )
 }

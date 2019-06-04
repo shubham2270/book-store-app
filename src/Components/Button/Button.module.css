@@ -1,4 +1,4 @@
-button {
+.button {
     padding: 1.2em;
     border-radius: 5px;
     border: none;
@@ -9,7 +9,7 @@ button {
     transition: 300ms;
 }
 
-button:hover {
+.button:hover {
     background-color: #fff;
     border: solid 2px var(--green);
 }

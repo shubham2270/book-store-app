@@ -1,0 +1,9 @@
+.module {
+    z-index: 3;
+    position: fixed;
+    width: 800px;
+    height: 400px;
+    padding: 1em;
+    background-color: white;
+    border-radius: 5px;
+}

@@ -41,3 +41,10 @@ p {
 ul {
     padding: 0em 1em;
 }
+
+.button_wrapper {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    padding-bottom: 10px;
+}
