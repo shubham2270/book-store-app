@@ -11,7 +11,8 @@ class SearchBar extends Component {
   render() {
     return (
       <div>
-        <input 
+        <input
+          onKeyDown={this.props.searchOnPressingEnter} 
           onChange={this.handleInput}
           type="text" 
           placeholder="Type author, book name, subject, keyword..." 

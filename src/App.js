@@ -12,7 +12,7 @@ import Backdrop from './Components/Backdrop/Backdrop';
 
 class App extends Component {
   state = {
-    keyword: 'food',
+    keyword: 'krishna',
     currentKeyword: '',
     sort: 'relevance',
     print: 'all',
@@ -21,14 +21,25 @@ class App extends Component {
     currentDescription: ''
   }
 
+//Resets the description to empty when any thing changes in state 
+  emptyDescription = () => {
+    this.setState({description: []})
+  }
 
   inputValueHandler = (value) => {
     this.setState({currentKeyword: value})
   }
 
+  //Displays the search result on clicking search button or pressing enter
   bookSearchHandler = () => {
-    this.setState({description: [],keyword: this.state.currentKeyword})
+    this.setState({keyword: this.state.currentKeyword})
+  }
 
+  // Performs search on clicking enter key
+  searchOnPressingEnter = (event) => {
+    if(event.keyCode === 13) {
+      this.bookSearchHandler()
+    }
   }
 
   sortRadioButtonHandler = (e) => {
@@ -47,7 +58,6 @@ class App extends Component {
   showModelOnInfoClick = (index) => {
     this.setState({modelToggle: 'flex'})
     this.descriptionHandler()
-    console.log(index);
 
     // Filters the description of clicked info
     let currDec = this.state.description.filter((el, i) => {
@@ -87,11 +97,12 @@ class App extends Component {
         />
         <div>
           <div className="searchbar">
-             <SearchBar inputValueHandler={this.inputValueHandler}/>
+             <SearchBar inputValueHandler={this.inputValueHandler}  searchOnPressingEnter={this.searchOnPressingEnter}/>
              <Button bookSearchHandler={this.bookSearchHandler} />
           </div>
           <main className="book_card_wrapper">
               <BookCard
+                emptyDescription={this.emptyDescription}
                 cardCounterHandler={this.cardCounterHandler}
                 descriptionHandler={this.descriptionHandler}
                 showModelOnInfoClick={this.showModelOnInfoClick} 

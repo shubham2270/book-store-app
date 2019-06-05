@@ -5,7 +5,6 @@ import styles from './CardButton.module.css';
 const CardButton = (props) => {
     return (
         <div>
-            {/* {console.log('from cardbtn:', props.index)} */}
             <a 
                 index={props.index}
                 href={props.infoLink} 
