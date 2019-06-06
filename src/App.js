@@ -18,13 +18,14 @@ class App extends Component {
     print: 'all',
     modelToggle: 'none',
     description: [],
-    currentDescription: ''
+    currentDescription: '',
+    googleBookLinks: [],
+    currentLink: '',
+    bookTitle: [],
+    currentTitle: ''
   }
 
-//Resets the description to empty when any thing changes in state 
-  emptyDescription = () => {
-    this.setState({description: []})
-  }
+
 
   inputValueHandler = (value) => {
     this.setState({currentKeyword: value})
@@ -59,13 +60,19 @@ class App extends Component {
     this.setState({modelToggle: 'flex'})
     this.descriptionHandler()
 
-    // Filters the description of clicked info
+    // Filters the description and google book link of clicked info
     let currDec = this.state.description.filter((el, i) => {
        return i === index
       }
     )
-    this.setState({currentDescription: currDec})
-
+    let currLink = this.state.googleBookLinks.filter((el, i) => {
+      return i === index
+    }
+   )
+   let currTitle = this.state.bookTitle.filter((el, i) => {
+     return i === index
+   })
+   this.setState({currentDescription: currDec, currentLink: currLink, currentTitle: currTitle })
   }
 
   hideModelWindow = () => {
@@ -78,12 +85,31 @@ class App extends Component {
     this.setState({description: description})
   }
 
+  googleBookLinkHandler = (link) => {
+    let links = [...this.state.googleBookLinks]
+    links.push(link)
+    this.setState({googleBookLinks: links})
+  }
+
+  bookTitleHandler = (title) => {
+    let bookTitle = [...this.state.bookTitle]
+    bookTitle.push(title)
+    this.setState({bookTitle: bookTitle})
+  }
+
+  //Resets the description and google book link to empty when any thing changes in state 
+  emptyDescription = () => {
+    this.setState({description: [], googleBookLinks: [], bookTitle: []})
+  }
+
 
 
   render() {
     return (
       <div className="App">
       <Backdrop
+        bookTitle={this.state.currentTitle[0]}
+        infoLink={this.state.currentLink[0]}
         description={this.state.currentDescription} 
         modelToggle={this.state.modelToggle} 
         hideModel={this.hideModelWindow}/>
@@ -104,6 +130,8 @@ class App extends Component {
               <BookCard
                 emptyDescription={this.emptyDescription}
                 cardCounterHandler={this.cardCounterHandler}
+                bookTitleHandler={this.bookTitleHandler}
+                googleBookLinkHandler={this.googleBookLinkHandler}
                 descriptionHandler={this.descriptionHandler}
                 showModelOnInfoClick={this.showModelOnInfoClick} 
                 printType={this.state.print}

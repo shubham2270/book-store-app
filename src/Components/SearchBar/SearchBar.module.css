@@ -1,6 +1,6 @@
 .searchBar {
     padding: 1.5em;
-    border-radius: 5px;
+    border-radius: var(--rounded);
     border: 2px solid var(--blue);
     margin: 20px;
     width: 500px;

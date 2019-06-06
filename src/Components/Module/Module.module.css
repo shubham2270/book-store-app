@@ -1,9 +1,25 @@
 .module {
     z-index: 3;
     position: fixed;
-    width: 800px;
-    height: 400px;
+    width: 900px;
+    min-height: 400px;
     padding: 1em;
     background-color: white;
     border-radius: 5px;
+    display: grid;
+    grid-template-rows: minmax(50px, 65px) 0 auto 40px;
+}
+
+.module p {
+    padding-top: 15px;
+}
+
+.module hr {
+    padding: 0;
+    border: 0.5px solid #d6d6d6;
+}
+
+.bookTitle {
+    font-size: 1.5rem;
+    padding: 10px;
 }

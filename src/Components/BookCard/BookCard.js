@@ -23,10 +23,10 @@ class BookCard extends Component {
       .then(res => res.json())
       .then(data => {
        const bookInfo = data.items.map((el, index) => {
-         const {authors, publisher, publishedDate, subtitle, imageLinks, infoLink, description} = el.volumeInfo
+         const {authors, publisher, publishedDate, subtitle, imageLinks, infoLink, description, title} = el.volumeInfo
            return(
              <div className={styles.bookCard} key={el.etag}>
-           <h2>{el.volumeInfo.title}</h2>
+           <h2>{title}</h2>
            <img src={imageLinks === undefined ? naPicture : imageLinks.thumbnail } alt="book-cover" width="50%" className={styles.bookImg}/>
            <ul>
              <li><strong>Author:</strong> {authors}</li>
@@ -36,13 +36,16 @@ class BookCard extends Component {
 
             { subtitle && <p className="description">{subtitle.substring(0, 100)}</p> }
            <div className={styles.button_wrapper}>
-             <CardButton 
+             <CardButton
+              showModel={()=>{}} //Does nothing, just to overwrite function
               buttonName='VISIT' 
               infoLink={infoLink}/>
              <CardButton
               index={index} 
               buttonName='INFO' 
-              showModel={this.props.showModelOnInfoClick} 
+              showModel={this.props.showModelOnInfoClick}
+              bookTitleHandler={this.props.bookTitleHandler(title)}
+              currLink={this.props.googleBookLinkHandler(infoLink)} 
               desc={this.props.descriptionHandler(description)}/>
 
         

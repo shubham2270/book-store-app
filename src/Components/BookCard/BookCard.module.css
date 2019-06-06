@@ -2,14 +2,16 @@
     width: 290px;
     height: auto;
     box-shadow: #dfdfdf 2px 2px 5px;
-    border-radius: 5px;
+    border-radius: var(--rounded);
     padding: 0em;
     line-height: 1.5em;
     display: grid;
     grid-gap: 10px;
     overflow: hidden;
     border: 2px solid var(--green);
+    transition: 350ms ease-in-out;
 }
+
 
 .bookCard:hover h2 {
     background-color: var(--green2);
@@ -17,11 +19,14 @@
 
 .bookCard:hover {
     border: 2px solid var(--green2);
+    transform: scale(1.02);
+    box-shadow: #cacaca 2px 5px 10px;
 }
 
 
 .bookImg {
     justify-self: center;
+    border-radius: var(--rounded)
 }
 
 h2 {

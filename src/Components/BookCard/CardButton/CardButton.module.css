@@ -1,14 +1,15 @@
 .button {
     background-color: var(--blue);
-    padding: 6px 20px;
+    padding: 8px 20px;
     border: none;
-    border-radius: 3px;
+    border-radius: var(--rounded);
     cursor: pointer;
     transition: 300ms;
-    font-size: 1.1rem;
-    color: black;
+    font-size: 1rem;
+    color: rgb(56, 56, 56);
 }
 
 .button:hover {
     background-color: var(--blue2);
+    color: #fff;
 }

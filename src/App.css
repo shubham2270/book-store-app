@@ -3,6 +3,7 @@
   --blue2: rgb(38, 192, 216);
   --green: #2AFC98;
   --green2: #09E85E;
+  --rounded: 8px;
 }
 
 html, body {
