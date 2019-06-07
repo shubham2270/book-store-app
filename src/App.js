@@ -102,8 +102,6 @@ class App extends Component {
     this.setState({description: [], googleBookLinks: [], bookTitle: []})
   }
 
-
-
   render() {
     return (
       <div className="App">
@@ -121,16 +119,18 @@ class App extends Component {
           sortRadioButtonHandler={this.sortRadioButtonHandler}
           printRadioButtonHandler={this.printRadioButtonHandler}
         />
-        <div>
+        <span>
           <div className="searchbar">
-             <SearchBar inputValueHandler={this.inputValueHandler}  searchOnPressingEnter={this.searchOnPressingEnter}/>
-             <Button bookSearchHandler={this.bookSearchHandler} />
+             <SearchBar inputValueHandler={this.inputValueHandler}  
+             searchOnPressingEnter={this.searchOnPressingEnter}/>
+             <Button bookSearchHandler={this.bookSearchHandler} btnName='Search'/>
           </div>
           <main className="book_card_wrapper">
               <BookCard
+                bookTitleHandler={this.bookTitleHandler}
+                // bookInfo={this.bookMetaInfo}
                 emptyDescription={this.emptyDescription}
                 cardCounterHandler={this.cardCounterHandler}
-                bookTitleHandler={this.bookTitleHandler}
                 googleBookLinkHandler={this.googleBookLinkHandler}
                 descriptionHandler={this.descriptionHandler}
                 showModelOnInfoClick={this.showModelOnInfoClick} 
@@ -138,11 +138,16 @@ class App extends Component {
                 sortBy={this.state.sort}
                 bookSearchHandler={this.bookSearchHandler}
                 keyword={this.state.keyword}
-                bookInfo={this.state.bookInfo}
-                isLoding={this.state.isLoding}
+                // bookInfo={this.state.bookInfo}
+                // isLoding={this.state.isLoding}
                 inputValue={this.inputValueHandler}/>
           </main>
-        </div>
+         <div className='pagination_wrapper'>
+            <Button btnName='1'/>
+            <Button btnName='2'/>
+            <Button btnName='3'/>
+         </div>
+        </span>
      </div>
       </div>
     );

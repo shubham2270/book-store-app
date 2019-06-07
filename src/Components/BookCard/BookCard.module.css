@@ -38,9 +38,10 @@ h2 {
     transition: 300ms;
 }
 
-p {
+.description {
     line-height: 1.2em;
     padding: 0em 0.1em 1em 1em;
+    font-size: 0.9rem;
 }
 
 ul {
@@ -53,3 +54,53 @@ ul {
     justify-content: space-around;
     padding-bottom: 10px;
 }
+
+.error {
+    width: 80vw;
+    height: 100vh;
+    text-align: center;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    width: 80vw;
+    height: 100vh;
+}
+.loading div {
+    display: flex;
+    width: 3.5em;
+    height: 3.5em;
+    border: 3px solid transparent;
+    border-top-color: #3cefff;
+    border-bottom-color: #3cefff;
+    border-radius: 50%;
+    animation: spin 1.5s linear infinite;
+  }
+  
+  .loading div:before {
+    content: '';
+    display: block;
+    margin: auto;
+    width: 0.75em;
+    height: 0.75em;
+    border: 3px solid #3cefff;
+    border-radius: 50%;
+    animation: pulse 1s alternate ease-in-out infinite;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes pulse {
+    from {
+      transform: scale(0.5);
+    }
+    to {
+      transform: scale(1);
+    }
+  }

@@ -8,18 +8,26 @@ class BookCard extends Component {
   state = {
     isLoding: true,
     bookInfo: null,
-    key: 'AIzaSyBhFWwOwC28yxjVIVtjL-gYh4dhd65gXr0'
+    key: 'AIzaSyBhFWwOwC28yxjVIVtjL-gYh4dhd65gXr0',
+    start: 0,
+    max: 8
   }
 
   componentDidMount() {
     this.props.emptyDescription()
 
-    fetch(`https://www.googleapis.com/books/v1/volumes?q=${this.props.keyword}&orderBy=${this.props.sortBy}&key=${this.state.key}`)
+    fetch(`https://www.googleapis.com/books/v1/volumes?q=${this.props.keyword}&orderBy=${this.props.sortBy}&
+    key=${this.state.key}&startIndex=${this.state.start}&maxResults=${this.state.max}`)
       .then(res => res.json())
       .then(data => console.log(data));
 
 
-    fetch(`https://www.googleapis.com/books/v1/volumes?q=${this.props.keyword}&orderBy=${this.props.sortBy}&printType=${this.props.printType}&key=${this.state.key}`)
+    fetch(`https://www.googleapis.com/books/v1/volumes?q=${this.props.keyword}&
+                                                  orderBy=${this.props.sortBy}&
+                                                  printType=${this.props.printType}&
+                                                  key=${this.state.key}&
+                                                  startIndex=${this.state.start}&maxResults=${this.state.max}
+                                                  `)
       .then(res => res.json())
       .then(data => {
        const bookInfo = data.items.map((el, index) => {
@@ -34,7 +42,7 @@ class BookCard extends Component {
              <li><strong>Published:</strong> {publishedDate}</li>
            </ul>
 
-            { subtitle && <p className="description">{subtitle.substring(0, 100)}</p> }
+            { subtitle && <p className={styles.description}>{subtitle.substring(0, 100)}</p> }
            <div className={styles.button_wrapper}>
              <CardButton
               showModel={()=>{}} //Does nothing, just to overwrite function
@@ -56,7 +64,7 @@ class BookCard extends Component {
         })
            this.setState({bookInfo: bookInfo, isLoding: false}) 
       }).catch(err => {
-           this.setState({bookInfo: 'Sorry no search result found! Please Try Again'}) 
+           this.setState({bookInfo: <div className={styles.error}>Sorry no search result found! Please Try Again</div>, isLoding:false}) 
            console.log(err)
       })
 
@@ -66,6 +74,7 @@ class BookCard extends Component {
     if (this.props.keyword !== prevProps.keyword || this.props.sortBy !== prevProps.sortBy || this.props.printType !== prevProps.printType
         || this.props.description !== prevProps.description
       ) {
+      this.setState({isLoding: true})
       this.componentDidMount()
     }
    
@@ -74,7 +83,7 @@ class BookCard extends Component {
 
   render() {
     return (
-     this.state.isLoding ? <div>Loading...</div> :  this.state.bookInfo
+     this.state.isLoding ? <div className={styles.loading}><div></div></div> :  this.state.bookInfo
     )
   }
   

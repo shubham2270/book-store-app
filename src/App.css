@@ -15,8 +15,10 @@ html, body {
 }
 
 .App {
-  display: grid;
-  justify-items: center;
+  /* display: grid; */
+  /* grid-template-rows: 1fr auto; */
+  /* grid-template-columns: 1fr 1fr; */
+  /* justify-items: center; */
   /* background-color: red; */
 }
 
@@ -40,5 +42,14 @@ h1 {
 
 .main_wrapper {
   display: grid;
-  grid-template-columns: 2fr auto;
+  grid-template-columns: 1fr 5fr;
+}
+
+
+.pagination_wrapper {
+  display: flex;
+  background-color: red;
+  justify-content: space-around;
+  width: 20%;
+  justify-self: center;
 }
