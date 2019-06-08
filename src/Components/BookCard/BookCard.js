@@ -9,25 +9,16 @@ class BookCard extends Component {
     isLoding: true,
     bookInfo: null,
     key: 'AIzaSyBhFWwOwC28yxjVIVtjL-gYh4dhd65gXr0',
-    start: 0,
-    max: 8
   }
 
   componentDidMount() {
     this.props.emptyDescription()
 
-    fetch(`https://www.googleapis.com/books/v1/volumes?q=${this.props.keyword}&orderBy=${this.props.sortBy}&
-    key=${this.state.key}&startIndex=${this.state.start}&maxResults=${this.state.max}`)
+    fetch(`https://www.googleapis.com/books/v1/volumes?q=${this.props.keyword}&orderBy=${this.props.sortBy}&key=${this.state.key}&startIndex=${this.props.startItemIndex}&maxResults=${this.props.maxItems}`)
       .then(res => res.json())
       .then(data => console.log(data));
 
-
-    fetch(`https://www.googleapis.com/books/v1/volumes?q=${this.props.keyword}&
-                                                  orderBy=${this.props.sortBy}&
-                                                  printType=${this.props.printType}&
-                                                  key=${this.state.key}&
-                                                  startIndex=${this.state.start}&maxResults=${this.state.max}
-                                                  `)
+    fetch(`https://www.googleapis.com/books/v1/volumes?q=${this.props.keyword}&orderBy=${this.props.sortBy}&printType=${this.props.printType}&key=${this.state.key}&startIndex=${this.props.startItemIndex}&maxResults=${this.props.maxItems}`)
       .then(res => res.json())
       .then(data => {
        const bookInfo = data.items.map((el, index) => {
@@ -55,8 +46,6 @@ class BookCard extends Component {
               bookTitleHandler={this.props.bookTitleHandler(title)}
               currLink={this.props.googleBookLinkHandler(infoLink)} 
               desc={this.props.descriptionHandler(description)}/>
-
-        
            </div>
          </div>
          
@@ -72,7 +61,7 @@ class BookCard extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.keyword !== prevProps.keyword || this.props.sortBy !== prevProps.sortBy || this.props.printType !== prevProps.printType
-        || this.props.description !== prevProps.description
+        || this.props.description !== prevProps.description || this.props.startItemIndex !== prevProps.startItemIndex
       ) {
       this.setState({isLoding: true})
       this.componentDidMount()

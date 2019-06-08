@@ -1,0 +1,17 @@
+.pageButton {
+    padding: 0.8em 1em;
+    background-color: var(--blue);
+    border: none;
+    border-radius: var(--rounded);
+    font-weight: bold;
+    transition: 300ms ease-in-out;
+    margin-left: 5px;
+    margin-right: 5px;
+    cursor: pointer;
+    border: solid var(--blue2) 3px;
+}
+
+.pageButton:hover {
+    background-color: var(--blue2);
+    color: white;
+}

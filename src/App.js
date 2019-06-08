@@ -8,11 +8,12 @@ import Button from './Components/Button/Button';
 import NavBar from './Components/NavBar/NavBar';
 import SideMenu from './Components/SideMenu/SideMenu';
 import Backdrop from './Components/Backdrop/Backdrop';
+import PaginationButton from './Components/PaginationButton/PaginationButton';
 
 
 class App extends Component {
   state = {
-    keyword: 'krishna',
+    keyword: 'tomato',
     currentKeyword: '',
     sort: 'relevance',
     print: 'all',
@@ -22,9 +23,17 @@ class App extends Component {
     googleBookLinks: [],
     currentLink: '',
     bookTitle: [],
-    currentTitle: ''
+    currentTitle: '',
+    startItemIndex: 0,
+    maxItems: 8,
+    activePaginationBtn: ''
   }
 
+//button 1 ==> 7
+//button 2 ==> 15
+//button 3 ==> 23
+//button 4 ==> 30
+//button 5 ==> 37
 
 
   inputValueHandler = (value) => {
@@ -79,28 +88,57 @@ class App extends Component {
     this.setState({modelToggle: 'none'})
   }
 
+  //Handles the description, link and title for model window
   descriptionHandler = (desc) => {
    let description = [...this.state.description]
    description.push(desc)
     this.setState({description: description})
   }
-
   googleBookLinkHandler = (link) => {
     let links = [...this.state.googleBookLinks]
     links.push(link)
     this.setState({googleBookLinks: links})
   }
-
   bookTitleHandler = (title) => {
     let bookTitle = [...this.state.bookTitle]
     bookTitle.push(title)
     this.setState({bookTitle: bookTitle})
   }
-
   //Resets the description and google book link to empty when any thing changes in state 
   emptyDescription = () => {
     this.setState({description: [], googleBookLinks: [], bookTitle: []})
   }
+
+  // Sets the starting index for item for pagination
+  paginationHandler = (pageNumber) => {
+    switch (pageNumber) {
+      case '1' :
+        this.setState({startItemIndex: 8})
+      break;
+      case '2' :
+        this.setState({startItemIndex: 16, activePaginationBtn: 'var(--green2)'})
+      break;
+      case '3' :
+        this.setState({startItemIndex: 24})
+      break;
+      case '4' :
+        this.setState({startItemIndex: 32})
+      break;
+      case '5' :
+        this.setState({startItemIndex: 40})
+      break;
+      case '6' :
+        this.setState({startItemIndex: 48})
+      break;
+      default : 
+      this.setState({startItemIndex: 0})
+    }
+    
+    console.log(pageNumber)
+  }
+
+
+  activeButton = {activeButton: this.state.activePaginationBtn}
 
   render() {
     return (
@@ -134,18 +172,23 @@ class App extends Component {
                 googleBookLinkHandler={this.googleBookLinkHandler}
                 descriptionHandler={this.descriptionHandler}
                 showModelOnInfoClick={this.showModelOnInfoClick} 
+                bookSearchHandler={this.bookSearchHandler}
+                inputValue={this.inputValueHandler}
                 printType={this.state.print}
                 sortBy={this.state.sort}
-                bookSearchHandler={this.bookSearchHandler}
                 keyword={this.state.keyword}
-                // bookInfo={this.state.bookInfo}
-                // isLoding={this.state.isLoding}
-                inputValue={this.inputValueHandler}/>
+                startItemIndex={this.state.startItemIndex}
+                maxItems={this.state.maxItems}
+                />
           </main>
          <div className='pagination_wrapper'>
-            <Button btnName='1'/>
-            <Button btnName='2'/>
-            <Button btnName='3'/>
+              <PaginationButton pageBtnName='0' paginationHandler={this.paginationHandler} activeButton={this.state.activePaginationBtn}/>
+              <PaginationButton pageBtnName='1' paginationHandler={this.paginationHandler} activeButton={this.state.activePaginationBtn}/>
+              <PaginationButton pageBtnName='2' paginationHandler={this.paginationHandler} activeButton={this.state.activePaginationBtn}/>
+              <PaginationButton pageBtnName='3' paginationHandler={this.paginationHandler} activeButton={this.state.activePaginationBtn}/>
+              <PaginationButton pageBtnName='4' paginationHandler={this.paginationHandler} activeButton={this.state.activePaginationBtn}/>
+              <PaginationButton pageBtnName='5' paginationHandler={this.paginationHandler} />
+              <PaginationButton pageBtnName='6' paginationHandler={this.paginationHandler} />
          </div>
         </span>
      </div>

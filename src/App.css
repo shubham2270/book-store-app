@@ -48,8 +48,8 @@ h1 {
 
 .pagination_wrapper {
   display: flex;
-  background-color: red;
-  justify-content: space-around;
-  width: 20%;
-  justify-self: center;
+  justify-content: center;
+  justify-items: center;
+  width: 100%;
+  margin-bottom: 30px;
 }
