@@ -9,6 +9,7 @@ const SideMenu = (props) => {
         <div className={styles.side_wrapper}>
            <Filter filterType='SORT BY:'/>
            <RadioButton
+                disabledStatus={props.disabledStatus}
                 htmlFor='relevance'
                 filter='Relevance'
                 radioButtonHandler={props.sortRadioButtonHandler}
@@ -18,6 +19,7 @@ const SideMenu = (props) => {
                 checked={props.sortChecked}
             />
             <RadioButton 
+                disabledStatus={props.disabledStatus}
                 htmlFor='newest'
                 filter='Newest'
                 radioButtonHandler={props.sortRadioButtonHandler}
@@ -27,6 +29,7 @@ const SideMenu = (props) => {
             />
            <Filter filterType='PRINT TYPE:'/>
            <RadioButton 
+                disabledStatus={props.disabledStatus}
                 htmlFor='all'
                 filter='All'
                 radioButtonHandler={props.printRadioButtonHandler}
@@ -35,7 +38,8 @@ const SideMenu = (props) => {
                 value='all' 
                 checked={props.printChecked}
             />
-           <RadioButton 
+           <RadioButton
+                disabledStatus={props.disabledStatus} 
                 htmlFor='books'
                 filter='Books'
                radioButtonHandler={props.printRadioButtonHandler}
@@ -43,7 +47,8 @@ const SideMenu = (props) => {
                 id='books'
                 value='books' 
             />
-           <RadioButton 
+           <RadioButton
+                disabledStatus={props.disabledStatus} 
                 htmlFor='magazines'
                 filter='Magazines'
                 radioButtonHandler={props.printRadioButtonHandler}
@@ -51,6 +56,10 @@ const SideMenu = (props) => {
                 id='magazines'
                 value='magazines' 
             />
+            <button
+                disabled={props.disabledStatus} 
+                className={styles.resetButton} 
+                onClick={props.resetFilters}>Reset Filters</button>
         </div>
     )
 }

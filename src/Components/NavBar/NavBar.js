@@ -5,7 +5,8 @@ import styles from './NavBar.module.css';
 const NavBar = () => {
     return (
         <div className={styles.main_wrapper}>
-            <h1>Book Store</h1>
+            <h1 className={styles.logo}>Book Store</h1>
+            <button className={styles.login}>Login</button>
         </div>
     )
 }

@@ -11,7 +11,12 @@
     border: solid var(--blue2) 3px;
 }
 
+
 .pageButton:hover {
     background-color: var(--blue2);
     color: white;
+}
+
+.activeButton {
+    background-color: var(--green2);
 }

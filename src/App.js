@@ -13,7 +13,7 @@ import PaginationButton from './Components/PaginationButton/PaginationButton';
 
 class App extends Component {
   state = {
-    keyword: 'tomato',
+    keyword: '',
     currentKeyword: '',
     sort: 'relevance',
     print: 'all',
@@ -26,14 +26,9 @@ class App extends Component {
     currentTitle: '',
     startItemIndex: 0,
     maxItems: 8,
-    activePaginationBtn: ''
+    activePaginationBtn: '',
+    disabledStatus: true
   }
-
-//button 1 ==> 7
-//button 2 ==> 15
-//button 3 ==> 23
-//button 4 ==> 30
-//button 5 ==> 37
 
 
   inputValueHandler = (value) => {
@@ -62,6 +57,11 @@ class App extends Component {
     this.setState({
       [e.target.name]: e.target.value
     })
+  }
+  // Resets the filters to default on clicking Reset filter button 
+  resetFilters = () => {
+    this.setState({sort: 'relevance', print: 'all'})
+    console.log('worked!');
   }
 
   // Displays the model on clicking info button and filters and store the description of clicked info
@@ -106,17 +106,17 @@ class App extends Component {
   }
   //Resets the description and google book link to empty when any thing changes in state 
   emptyDescription = () => {
-    this.setState({description: [], googleBookLinks: [], bookTitle: []})
+    this.setState({description: [], googleBookLinks: [], bookTitle: [], disabledStatus: false})
   }
 
   // Sets the starting index for item for pagination
-  paginationHandler = (pageNumber) => {
+  paginationHandler = (e, pageNumber) => {  
     switch (pageNumber) {
       case '1' :
         this.setState({startItemIndex: 8})
       break;
       case '2' :
-        this.setState({startItemIndex: 16, activePaginationBtn: 'var(--green2)'})
+        this.setState({startItemIndex: 16})
       break;
       case '3' :
         this.setState({startItemIndex: 24})
@@ -133,12 +133,10 @@ class App extends Component {
       default : 
       this.setState({startItemIndex: 0})
     }
-    
-    console.log(pageNumber)
+    this.setState({activePaginationBtn: pageNumber})
   }
 
 
-  activeButton = {activeButton: this.state.activePaginationBtn}
 
   render() {
     return (
@@ -149,11 +147,14 @@ class App extends Component {
         description={this.state.currentDescription} 
         modelToggle={this.state.modelToggle} 
         hideModel={this.hideModelWindow}/>
+
       <NavBar />
      <div className="main_wrapper">
-        <SideMenu 
+        <SideMenu
+          disabledStatus={this.state.disabledStatus} 
           sortChecked={this.state.sort === "relevance"}
           printChecked={this.state.print === "all"}
+          resetFilters={this.resetFilters}
           sortRadioButtonHandler={this.sortRadioButtonHandler}
           printRadioButtonHandler={this.printRadioButtonHandler}
         />
@@ -187,8 +188,8 @@ class App extends Component {
               <PaginationButton pageBtnName='2' paginationHandler={this.paginationHandler} activeButton={this.state.activePaginationBtn}/>
               <PaginationButton pageBtnName='3' paginationHandler={this.paginationHandler} activeButton={this.state.activePaginationBtn}/>
               <PaginationButton pageBtnName='4' paginationHandler={this.paginationHandler} activeButton={this.state.activePaginationBtn}/>
-              <PaginationButton pageBtnName='5' paginationHandler={this.paginationHandler} />
-              <PaginationButton pageBtnName='6' paginationHandler={this.paginationHandler} />
+              <PaginationButton pageBtnName='5' paginationHandler={this.paginationHandler} activeButton={this.state.activePaginationBtn}/>
+              <PaginationButton pageBtnName='6' paginationHandler={this.paginationHandler} activeButton={this.state.activePaginationBtn}/>
          </div>
         </span>
      </div>

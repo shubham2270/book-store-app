@@ -5,3 +5,26 @@
     padding: 10px;
     margin-top: -40px;
 }
+
+.resetButton {
+    background-color: var(--green);
+    border: none;
+    border-radius: var(--rounded);
+    margin-top: 2.5em;
+    cursor: pointer;
+    transition: 300ms;
+}
+
+.resetButton:disabled {
+    background-color: #d3d3d3;
+    cursor: not-allowed;
+}
+
+.resetButton:disabled:hover {
+    background-color: #d3d3d3;
+    cursor: not-allowed;
+}
+
+.resetButton:hover {
+    background-color: var(--green2);
+}

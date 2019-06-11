@@ -41,6 +41,9 @@
   .container input:checked ~ .checkmark {
     background-color: var(--green);
   }
+  .container input:disabled ~ .checkmark {
+    background-color: #d3d3d3;
+  }
   
   /* Create the indicator (the dot/circle - hidden when not checked) */
   .checkmark:after {

@@ -6,8 +6,9 @@ const PaginationButton = (props) => {
     return (
         <div>
         <button 
-            className={styles.pageButton} 
-            onClick={() => props.paginationHandler(props.pageBtnName)}
+            value={props.pageBtnName}
+            className={props.activeButton === props.pageBtnName ? [styles.pageButton, styles.activeButton].join(' ') : styles.pageButton}
+            onClick={(e) => props.paginationHandler(e, props.pageBtnName)}
             style={{backgroundColor: props.activeButton}}
             >{props.pageBtnName}</button> 
         </div>

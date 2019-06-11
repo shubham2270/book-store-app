@@ -55,10 +55,11 @@ ul {
     padding-bottom: 10px;
 }
 
-.error {
+.message {
     width: 80vw;
     height: 100vh;
     text-align: center;
+    font-size: 1.3rem;
 }
 
 .loading {

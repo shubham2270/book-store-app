@@ -7,6 +7,7 @@ const RadioButton = (props) => {
         <>
              <label htmlFor={props.htmlFor} className={styles.container}>{props.filter}
             <input 
+                disabled={props.disabledStatus}
                 onChange={props.radioButtonHandler}
                 type='radio'
                 name={props.name} 
