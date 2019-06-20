@@ -1,0 +1,11 @@
+.input {
+    padding: 1em;
+    border-radius: var(--rounded);
+    border: 2px solid var(--blue);
+    width: 100%;
+}
+
+.wrapper h5 {
+    justify-self: flex-start;
+    padding-top: 10px;
+}

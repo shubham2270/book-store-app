@@ -1,0 +1,21 @@
+.login_wrapper {
+    width: 50%;
+    height: auto;
+    border-radius: var(--rounded);
+    padding: 1em;
+    box-shadow: #cfcfcf 3px 3px 10px;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+}
+
+.btnWrapper {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    margin-top: 2em;
+}
+
+.input_wrapper {
+    width: 350px;
+}
