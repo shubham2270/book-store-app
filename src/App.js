@@ -11,7 +11,7 @@ import Backdrop from './Components/Backdrop/Backdrop';
 import Login from './Components/LoginForm/Login/Login';
 import Register from './Components/LoginForm/Register/Register';
 import PaginationButton from './Components/PaginationButton/PaginationButton';
-import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {BrowserRouter as Router, Route } from 'react-router-dom';
 
 
 class App extends Component {
@@ -204,12 +204,12 @@ class App extends Component {
             sortRadioButtonHandler={this.sortRadioButtonHandler}
             printRadioButtonHandler={this.printRadioButtonHandler}
           />
-      </div>
-        
           <Route path="/" exact component={this.Home}/>
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
-        </div>
+      </div>
+         
+      </div>
       </Router>
     );
   }

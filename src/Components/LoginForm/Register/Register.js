@@ -1,11 +1,12 @@
 import React from 'react';
+import styles from './Register.module.css';
 
 import LoginForm from '../LoginForm';
 import InputField from '../InputField/InputField';
 
 const Register = () => {
     return (
-        <div>
+        <div className={styles.register_wrapper}>
              <LoginForm heading='Register'>
                 <InputField type='text' label='FULL NAME' />
                 <InputField type='email' label='EMAIL ID' />

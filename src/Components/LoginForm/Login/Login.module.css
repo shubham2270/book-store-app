@@ -1,0 +1,7 @@
+.login_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: red; */
+    width: 100%;
+}
