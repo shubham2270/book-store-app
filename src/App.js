@@ -11,7 +11,7 @@ import Backdrop from './Components/Backdrop/Backdrop';
 import Login from './Components/LoginForm/Login/Login';
 import Register from './Components/LoginForm/Register/Register';
 import PaginationButton from './Components/PaginationButton/PaginationButton';
-import {BrowserRouter as Router, Route } from 'react-router-dom';
+import {BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
 
 class App extends Component {
@@ -30,7 +30,9 @@ class App extends Component {
     startItemIndex: 0,
     maxItems: 8,
     activePaginationBtn: '0',
-    disabledStatus: true
+    disabledStatus: true,
+    loginText: 'Login',
+    loginStatus: false
   }
 
 
@@ -139,6 +141,25 @@ class App extends Component {
     this.setState({ activePaginationBtn: pageNumber })
   }
 
+  // Change the login status for displaying home or login screen
+  onRouteChange = (status) => {
+      this.setState(prevState => ({
+        loginStatus: !prevState.loginStatus
+      }))
+    
+    this.setState({route: status })
+    this.toggleLoginText()
+  }
+
+  toggleLoginText = () => {
+    if (this.state.loginStatus === false) {
+      this.setState({loginText: 'Logout'})
+    } else {
+      this.setState({loginText: 'Login'})
+    }
+    
+  }
+
    Home = () => (
      <>
     <Backdrop
@@ -154,7 +175,7 @@ class App extends Component {
       <div className="searchbar">
         <SearchBar inputValueHandler={this.inputValueHandler}
           searchOnPressingEnter={this.searchOnPressingEnter} />
-        <Button bookSearchHandler={this.bookSearchHandler} btnName='Search' />
+        <Button onClick={this.bookSearchHandler} btnName='Search' />
       </div>
       <main className="book_card_wrapper">
         <BookCard
@@ -191,24 +212,38 @@ class App extends Component {
 
   render() {
     return (
-      
       <Router>
         <div className="App"> 
-        <NavBar />
-      <div className='main_wrapper'>
-        <SideMenu
-            disabledStatus={this.state.disabledStatus}
-            sortChecked={this.state.sort === "relevance"}
-            printChecked={this.state.print === "all"}
-            resetFilters={this.resetFilters}
-            sortRadioButtonHandler={this.sortRadioButtonHandler}
-            printRadioButtonHandler={this.printRadioButtonHandler}
-          />
-          <Route path="/" exact component={this.Home}/>
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-      </div>
-         
+        <NavBar loginStatus={this.state.loginText} onRouteChange={this.onRouteChange}/>
+           <div className='main_wrapper'> 
+        { this.state.loginStatus === false
+           ?   <> 
+              <Redirect to='/login'/> 
+              <Route path="/login" render={() => (
+              <Login onRouteChange={this.onRouteChange}/>
+            )}/> 
+            </>
+          : (this.state.route === 'register') 
+          ? <>
+            <Redirect to='/register'/> 
+            <Route path="/register" component={Register} />
+            </>
+           
+          :   <> 
+              <Redirect to='/'/>
+              <SideMenu
+                  disabledStatus={this.state.disabledStatus}
+                  sortChecked={this.state.sort === "relevance"}
+                  printChecked={this.state.print === "all"}
+                  resetFilters={this.resetFilters}
+                  sortRadioButtonHandler={this.sortRadioButtonHandler}
+                  printRadioButtonHandler={this.printRadioButtonHandler}
+                />
+                <Route path="/" exact component={this.Home}/>
+               
+                </> 
+        }
+            </div>
       </div>
       </Router>
     );
