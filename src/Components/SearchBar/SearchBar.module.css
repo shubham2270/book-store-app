@@ -4,5 +4,10 @@
     border: 2px solid var(--blue);
     margin: 20px;
     width: 500px;
-    justify-self: center;
 }
+
+.searchbar_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

@@ -2,15 +2,12 @@ import React, { Component } from 'react';
 import './BaseCSS/reset.css';
 import './App.css';
 
-import BookCard from './Components/BookCard/BookCard';
-import SearchBar from './Components/SearchBar/SearchBar';
-import Button from './Components/Button/Button';
 import NavBar from './Components/NavBar/NavBar';
-import SideMenu from './Components/SideMenu/SideMenu';
 import Backdrop from './Components/Backdrop/Backdrop';
 import Login from './Components/LoginForm/Login/Login';
 import Register from './Components/LoginForm/Register/Register';
 import PaginationButton from './Components/PaginationButton/PaginationButton';
+import HomePage from './Components/HomePage/HomePage';
 import {BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
 
@@ -162,25 +159,16 @@ class App extends Component {
 
    Home = () => (
      <>
-    <Backdrop
-    bookTitle={this.state.currentTitle[0]}
-    infoLink={this.state.currentLink[0]}
-    description={this.state.currentDescription}
-    modelToggle={this.state.modelToggle}
-    hideModel={this.hideModelWindow} />
- 
-  <div className="main_wrapper">
-    
-    <span>
-      <div className="searchbar">
-        <SearchBar inputValueHandler={this.inputValueHandler}
-          searchOnPressingEnter={this.searchOnPressingEnter} />
-        <Button onClick={this.bookSearchHandler} btnName='Search' />
-      </div>
-      <main className="book_card_wrapper">
+        <Backdrop
+        bookTitle={this.state.currentTitle[0]}
+        infoLink={this.state.currentLink[0]}
+        description={this.state.currentDescription}
+        modelToggle={this.state.modelToggle}
+        hideModel={this.hideModelWindow} />
+
+      {/* <main className="book_card_wrapper">
         <BookCard
           bookTitleHandler={this.bookTitleHandler}
-          // bookInfo={this.bookMetaInfo}
           emptyDescription={this.emptyDescription}
           cardCounterHandler={this.cardCounterHandler}
           googleBookLinkHandler={this.googleBookLinkHandler}
@@ -194,7 +182,7 @@ class App extends Component {
           startItemIndex={this.state.startItemIndex}
           maxItems={this.state.maxItems}
         />
-      </main>
+      </main> */}
      
       <div className='pagination_wrapper'>
         <PaginationButton pageBtnName='0' paginationHandler={this.paginationHandler} activeButton={this.state.activePaginationBtn} />
@@ -205,8 +193,6 @@ class App extends Component {
         <PaginationButton pageBtnName='5' paginationHandler={this.paginationHandler} activeButton={this.state.activePaginationBtn} />
         <PaginationButton pageBtnName='6' paginationHandler={this.paginationHandler} activeButton={this.state.activePaginationBtn} />
       </div>
-    </span>
-  </div>
   </>
    )
 
@@ -215,7 +201,6 @@ class App extends Component {
       <Router>
         <div className="App"> 
         <NavBar loginStatus={this.state.loginText} onRouteChange={this.onRouteChange}/>
-           <div className='main_wrapper'> 
         { this.state.loginStatus === false
            ?   <> 
               <Redirect to='/login'/> 
@@ -231,20 +216,38 @@ class App extends Component {
            
           :   <> 
               <Redirect to='/'/>
-              <SideMenu
+              <HomePage
                   disabledStatus={this.state.disabledStatus}
                   sortChecked={this.state.sort === "relevance"}
                   printChecked={this.state.print === "all"}
                   resetFilters={this.resetFilters}
                   sortRadioButtonHandler={this.sortRadioButtonHandler}
                   printRadioButtonHandler={this.printRadioButtonHandler}
+                  inputValueHandler={this.inputValueHandler}
+                  searchOnPressingEnter={this.searchOnPressingEnter}
+                  onClick={this.bookSearchHandler} 
+                  btnName='Search'
+
+                  bookTitleHandler={this.bookTitleHandler}
+                  emptyDescription={this.emptyDescription}
+                  cardCounterHandler={this.cardCounterHandler}
+                  googleBookLinkHandler={this.googleBookLinkHandler}
+                  descriptionHandler={this.descriptionHandler}
+                  showModelOnInfoClick={this.showModelOnInfoClick}
+                  bookSearchHandler={this.bookSearchHandler}
+                  inputValue={this.inputValueHandler}
+                  printType={this.state.print}
+                  sortBy={this.state.sort}
+                  keyword={this.state.keyword}
+                  startItemIndex={this.state.startItemIndex}
+                  maxItems={this.state.maxItems}
+
                 />
                 <Route path="/" exact component={this.Home}/>
-               
                 </> 
         }
             </div>
-      </div>
+     
       </Router>
     );
   }

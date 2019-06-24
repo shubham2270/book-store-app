@@ -1,9 +1,9 @@
 .login_wrapper {
-    width: 50%;
+    width: 30%;
     height: auto;
     border-radius: var(--rounded);
     padding: 1em;
-    box-shadow: #cfcfcf 3px 3px 10px;
+    box-shadow: #cccccca8 0px 0px 30px;
     display: grid;
     justify-items: center;
     align-items: center;
@@ -17,5 +17,5 @@
 }
 
 .input_wrapper {
-    width: 350px;
+    width: 80%;
 }

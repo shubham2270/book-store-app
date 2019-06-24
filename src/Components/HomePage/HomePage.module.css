@@ -1,0 +1,11 @@
+.main_wrapper {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+}
+
+.book_card_wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1em;
+    padding: 2em;
+  }
