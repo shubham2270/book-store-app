@@ -8,7 +8,7 @@ import Login from './Components/LoginForm/Login/Login';
 import Register from './Components/LoginForm/Register/Register';
 import PaginationButton from './Components/PaginationButton/PaginationButton';
 import HomePage from './Components/HomePage/HomePage';
-import {BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
 
 class App extends Component {
@@ -28,10 +28,25 @@ class App extends Component {
     maxItems: 8,
     activePaginationBtn: '0',
     disabledStatus: true,
-    loginText: 'Login',
-    loginStatus: false
+    isSignedIn: false,
+    route: 'login',
+    user: {
+      id: '',
+      name: '',
+      email: '',
+      joined: ''
+    }
   }
 
+  //update user info to state
+  loadUser = (data) => {
+    this.setState({user: {
+      id: data.id,
+      name: data.name,
+      email: data.email,
+      joined: data.joined
+    }})
+  }
 
   inputValueHandler = (value) => {
     this.setState({ currentKeyword: value })
@@ -140,50 +155,24 @@ class App extends Component {
 
   // Change the login status for displaying home or login screen
   onRouteChange = (status) => {
-      this.setState(prevState => ({
-        loginStatus: !prevState.loginStatus
-      }))
-    
-    this.setState({route: status })
-    this.toggleLoginText()
-  }
-
-  toggleLoginText = () => {
-    if (this.state.loginStatus === false) {
-      this.setState({loginText: 'Logout'})
+    if (status === 'home') {
+      this.setState({ isSignedIn: true })
+      console.log(status)
     } else {
-      this.setState({loginText: 'Login'})
+      this.setState({ isSignedIn: false })
     }
-    
+    this.setState({ route: status })
   }
 
-   Home = () => (
-     <>
-        <Backdrop
+  Home = () => (
+    <>
+      <Backdrop
         bookTitle={this.state.currentTitle[0]}
         infoLink={this.state.currentLink[0]}
         description={this.state.currentDescription}
         modelToggle={this.state.modelToggle}
         hideModel={this.hideModelWindow} />
 
-      {/* <main className="book_card_wrapper">
-        <BookCard
-          bookTitleHandler={this.bookTitleHandler}
-          emptyDescription={this.emptyDescription}
-          cardCounterHandler={this.cardCounterHandler}
-          googleBookLinkHandler={this.googleBookLinkHandler}
-          descriptionHandler={this.descriptionHandler}
-          showModelOnInfoClick={this.showModelOnInfoClick}
-          bookSearchHandler={this.bookSearchHandler}
-          inputValue={this.inputValueHandler}
-          printType={this.state.print}
-          sortBy={this.state.sort}
-          keyword={this.state.keyword}
-          startItemIndex={this.state.startItemIndex}
-          maxItems={this.state.maxItems}
-        />
-      </main> */}
-     
       <div className='pagination_wrapper'>
         <PaginationButton pageBtnName='0' paginationHandler={this.paginationHandler} activeButton={this.state.activePaginationBtn} />
         <PaginationButton pageBtnName='1' paginationHandler={this.paginationHandler} activeButton={this.state.activePaginationBtn} />
@@ -193,30 +182,32 @@ class App extends Component {
         <PaginationButton pageBtnName='5' paginationHandler={this.paginationHandler} activeButton={this.state.activePaginationBtn} />
         <PaginationButton pageBtnName='6' paginationHandler={this.paginationHandler} activeButton={this.state.activePaginationBtn} />
       </div>
-  </>
-   )
+    </>
+  )
 
   render() {
     return (
       <Router>
-        <div className="App"> 
-        <NavBar loginStatus={this.state.loginText} onRouteChange={this.onRouteChange}/>
-        { this.state.loginStatus === false
-           ?   <> 
-              <Redirect to='/login'/> 
+        <div className="App">
+          <NavBar onRouteChange={this.onRouteChange} isSignedIn={this.state.isSignedIn} />
+          {this.state.route === 'login'
+            ? <>
+              <Redirect to='/login' />
               <Route path="/login" render={() => (
-              <Login onRouteChange={this.onRouteChange}/>
-            )}/> 
+                <Login onRouteChange={this.onRouteChange} />
+              )} />
             </>
-          : (this.state.route === 'register') 
-          ? <>
-            <Redirect to='/register'/> 
-            <Route path="/register" component={Register} />
-            </>
-           
-          :   <> 
-              <Redirect to='/'/>
-              <HomePage
+            : (this.state.route === 'register')
+              ? <>
+                <Redirect to='/register' />
+                <Route path="/register" render={() => (
+                  <Register onRouteChange={this.onRouteChange} loadUser={this.loadUser}/>
+                )} />
+              </>
+
+              : <>
+                <Redirect to='/' />
+                <HomePage
                   disabledStatus={this.state.disabledStatus}
                   sortChecked={this.state.sort === "relevance"}
                   printChecked={this.state.print === "all"}
@@ -225,9 +216,8 @@ class App extends Component {
                   printRadioButtonHandler={this.printRadioButtonHandler}
                   inputValueHandler={this.inputValueHandler}
                   searchOnPressingEnter={this.searchOnPressingEnter}
-                  onClick={this.bookSearchHandler} 
+                  onClick={this.bookSearchHandler}
                   btnName='Search'
-
                   bookTitleHandler={this.bookTitleHandler}
                   emptyDescription={this.emptyDescription}
                   cardCounterHandler={this.cardCounterHandler}
@@ -241,13 +231,11 @@ class App extends Component {
                   keyword={this.state.keyword}
                   startItemIndex={this.state.startItemIndex}
                   maxItems={this.state.maxItems}
-
                 />
-                <Route path="/" exact component={this.Home}/>
-                </> 
-        }
-            </div>
-     
+                <Route path="/" exact component={this.Home} />
+              </>
+          }
+        </div>
       </Router>
     );
   }
