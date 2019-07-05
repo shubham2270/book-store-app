@@ -1,11 +1,12 @@
 .main_wrapper {
     width: 100%;
-    min-height: 12vh;
+    min-height: 10vh;
     background-color: var(--blue);
     display: flex;
     align-items: center;
     padding-left: 20px;
     justify-content: space-between;
+    z-index: 10;
 }
 
 .logo {

@@ -8,7 +8,7 @@ import BookCard from '../BookCard/BookCard';
 const HomePage = (props) => {
     return (
         <div className={styles.main_wrapper}>
-            <SideMenu 
+            <SideMenu  
                 disabledStatus={props.disabledStatus}
                 sortChecked={props.sortChecked}
                 printChecked={props.printChecked}

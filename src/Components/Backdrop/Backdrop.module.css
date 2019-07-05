@@ -1,9 +1,10 @@
 .backdrop {
     background-color: rgba(0, 0, 0, 0.808);
     width: 100%;
-    height: 100%;
+    height: 100vh;
     position: fixed;
-    z-index: 2;
+    top: 0;
+    z-index: 50;
     align-items: center;
     justify-content: center;
 }

@@ -40,17 +40,20 @@ class App extends Component {
 
   //update user info to state
   loadUser = (data) => {
-    this.setState({user: {
-      id: data.id,
-      name: data.name,
-      email: data.email,
-      joined: data.joined
-    }})
+    this.setState({
+      user: {
+        id: data.id,
+        name: data.name,
+        email: data.email,
+        joined: data.joined
+      }
+    })
   }
 
   inputValueHandler = (value) => {
     this.setState({ currentKeyword: value })
   }
+
 
   //Displays the search result on clicking search button or pressing enter
   bookSearchHandler = () => {
@@ -78,7 +81,6 @@ class App extends Component {
   // Resets the filters to default on clicking Reset filter button 
   resetFilters = () => {
     this.setState({ sort: 'relevance', print: 'all' })
-    console.log('worked!');
   }
 
   // Displays the model on clicking info button and filters and store the description of clicked info
@@ -157,7 +159,6 @@ class App extends Component {
   onRouteChange = (status) => {
     if (status === 'home') {
       this.setState({ isSignedIn: true })
-      console.log(status)
     } else {
       this.setState({ isSignedIn: false })
     }
@@ -166,13 +167,6 @@ class App extends Component {
 
   Home = () => (
     <>
-      <Backdrop
-        bookTitle={this.state.currentTitle[0]}
-        infoLink={this.state.currentLink[0]}
-        description={this.state.currentDescription}
-        modelToggle={this.state.modelToggle}
-        hideModel={this.hideModelWindow} />
-
       <div className='pagination_wrapper'>
         <PaginationButton pageBtnName='0' paginationHandler={this.paginationHandler} activeButton={this.state.activePaginationBtn} />
         <PaginationButton pageBtnName='1' paginationHandler={this.paginationHandler} activeButton={this.state.activePaginationBtn} />
@@ -184,6 +178,9 @@ class App extends Component {
       </div>
     </>
   )
+
+
+
 
   render() {
     return (
@@ -201,12 +198,18 @@ class App extends Component {
               ? <>
                 <Redirect to='/register' />
                 <Route path="/register" render={() => (
-                  <Register onRouteChange={this.onRouteChange} loadUser={this.loadUser}/>
+                  <Register onRouteChange={this.onRouteChange} loadUser={this.loadUser} />
                 )} />
               </>
 
               : <>
                 <Redirect to='/' />
+                <Backdrop
+                  bookTitle={this.state.currentTitle[0]}
+                  infoLink={this.state.currentLink[0]}
+                  description={this.state.currentDescription}
+                  modelToggle={this.state.modelToggle}
+                  hideModel={this.hideModelWindow} />
                 <HomePage
                   disabledStatus={this.state.disabledStatus}
                   sortChecked={this.state.sort === "relevance"}

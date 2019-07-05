@@ -1,107 +1,174 @@
 .bookCard {
-    width: 290px;
-    height: auto;
-    box-shadow: #dfdfdf 2px 2px 5px;
-    border-radius: var(--rounded);
-    padding: 0em;
-    line-height: 1.5em;
-    display: grid;
-    grid-gap: 10px;
-    overflow: hidden;
-    border: 2px solid var(--green);
-    transition: 350ms ease-in-out;
+  width: 290px;
+  height: auto;
+  box-shadow: #dfdfdf 2px 2px 5px;
+  border-radius: var(--rounded);
+  padding: 0em;
+  line-height: 1.5em;
+  display: grid;
+  grid-gap: 10px;
+  overflow: hidden;
+  border: 2px solid var(--green);
+  transition: 350ms ease-in-out;
 }
 
 
 .bookCard:hover h2 {
-    background-color: var(--green2);
+  background-color: var(--green2);
 }
 
 .bookCard:hover {
-    border: 2px solid var(--green2);
-    transform: scale(1.02);
-    box-shadow: #cacaca 2px 5px 10px;
+  border: 2px solid var(--green2);
+  transform: scale(1.02);
+  box-shadow: #cacaca 2px 5px 10px;
 }
 
 
 .bookImg {
-    justify-self: center;
-    border-radius: var(--rounded)
+  justify-self: center;
+  border-radius: var(--rounded)
 }
 
 h2 {
-    justify-self: center;
-    font-size: 1rem;
-    background-color: var(--green);
-    width: 100%;
-    padding: 1em;
-    transition: 300ms;
+  justify-self: center;
+  font-size: 1rem;
+  background-color: var(--green);
+  width: 100%;
+  padding: 1em;
+  transition: 300ms;
 }
 
 .description {
-    line-height: 1.2em;
-    padding: 0em 0.1em 1em 1em;
-    font-size: 0.9rem;
+  line-height: 1.2em;
+  padding: 0em 0.1em 1em 1em;
+  font-size: 0.9rem;
 }
 
 ul {
-    padding: 0em 1em;
+  padding: 0em 1em;
 }
 
 .button_wrapper {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-around;
-    padding-bottom: 10px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  padding-bottom: 10px;
 }
 
 .message {
-    width: 80vw;
-    height: 100vh;
-    text-align: center;
-    font-size: 1.3rem;
+  width: 80vw;
+  height: 100vh;
+  text-align: center;
+  font-size: 1.3rem;
 }
 
 .loading {
-    display: flex;
-    justify-content: center;
-    /* align-items: center; */
-    width: 80vw;
-    height: 100vh;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  width: 80vw;
+  height: 100vh;
 }
+
 .loading div {
-    display: flex;
-    width: 3.5em;
-    height: 3.5em;
-    border: 3px solid transparent;
-    border-top-color: #3cefff;
-    border-bottom-color: #3cefff;
-    border-radius: 50%;
-    animation: spin 1.5s linear infinite;
+  display: flex;
+  width: 3.5em;
+  height: 3.5em;
+  border: 3px solid transparent;
+  border-top-color: #3cefff;
+  border-bottom-color: #3cefff;
+  border-radius: 50%;
+  animation: spin 1.5s linear infinite;
+}
+
+.loading div:before {
+  content: '';
+  display: block;
+  margin: auto;
+  width: 0.75em;
+  height: 0.75em;
+  border: 3px solid #3cefff;
+  border-radius: 50%;
+  animation: pulse 1s alternate ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
-  
-  .loading div:before {
-    content: '';
-    display: block;
-    margin: auto;
-    width: 0.75em;
-    height: 0.75em;
-    border: 3px solid #3cefff;
-    border-radius: 50%;
-    animation: pulse 1s alternate ease-in-out infinite;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(0.5);
   }
-  
-  @keyframes spin {
-    to {
-      transform: rotate(360deg);
-    }
+
+  to {
+    transform: scale(1);
   }
-  
-  @keyframes pulse {
-    from {
-      transform: scale(0.5);
-    }
-    to {
-      transform: scale(1);
-    }
+}
+
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .message {
+    font-size: 0.8rem;
+    text-align: left;
   }
+
+  .bookCard {
+    font-size: 100%;
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .message {
+    font-size: 0.8rem;
+    text-align: left;
+    margin-left: -30px;
+  }
+
+  .bookCard {
+    font-size: 80%;
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  .message {
+    font-size: 0.8rem;
+    text-align: left;
+    margin-left: -30px;
+  }
+
+  .bookCard {
+    font-size: 80%;
+    width: 100%;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+  .message {
+    font-size: 0.8rem;
+    text-align: left;
+    margin-left: -30px;
+  }
+
+  .bookCard {
+    font-size: 80%;
+    width: 95%;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .message {
+    font-size: 0.8rem;
+    text-align: left;
+    margin-left: -30px;
+  }
+
+  .bookCard {
+    font-size: 80%;
+    width: 95%;
+  }
+}

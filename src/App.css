@@ -18,14 +18,6 @@ button {
   cursor: pointer;
 }
 
-.App {
-  /* display: grid; */
-  /* grid-template-rows: 1fr auto; */
-  /* grid-template-columns: 1fr 1fr; */
-  /* justify-items: center; */
-  /* background-color: red; */
-}
-
 h1 {
   text-align: center;
 }

@@ -34,9 +34,12 @@ class Register extends Component {
         })
         .then(res => res.json())
         .then(user => {
-            if (user) {
+            if (user === 'incorrect form submission') {
+                console.log(user);
+            } else {
                 this.props.loadUser(user)
                 this.props.onRouteChange('home')
+
             }
         })
     }

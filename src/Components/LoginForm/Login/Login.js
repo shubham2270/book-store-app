@@ -6,8 +6,8 @@ import InputField from '../InputField/InputField';
 
 class Login extends Component {
     state = {
-        LoginEmail: 'john@gmail.com',
-        LoginPassword: 'john'
+        LoginEmail: '',
+        LoginPassword: ''
     }
 
     onEmailChange = (event) => {
@@ -33,7 +33,7 @@ class Login extends Component {
                 this.props.onRouteChange('home');
             }
         })
-    }
+    } 
 
     render() {
         const { onRouteChange } = this.props;

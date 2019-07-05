@@ -1,5 +1,5 @@
 .module {
-    z-index: 3;
+    z-index: 99;
     position: fixed;
     width: 900px;
     min-height: 400px;
@@ -25,4 +25,41 @@
 .bookTitle {
     font-size: 1.5rem;
     padding: 10px;
+}
+
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .module {
+        width: auto;
+        height: auto;
+        padding: 10px;
+        margin: 5%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    .module {
+        width: auto;
+        height: auto;
+        padding: 10px;
+        margin: 5%;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .module {
+        width: auto;
+        height: auto;
+        padding: 10px;
+        margin: 5%;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .module {
+        width: auto;
+        height: auto;
+        padding: 10px;
+        margin: 5%;
+    }
 }

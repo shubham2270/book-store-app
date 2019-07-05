@@ -1,8 +1,6 @@
 .side_wrapper {
-    border-right: solid var(--blue) 3px;
     padding: 10px;
-    height: 88vh;
-    /* margin-top: -40px; */
+    height: 100%;
 }
 
 .resetButton {
@@ -26,4 +24,46 @@
 
 .resetButton:hover {
     background-color: var(--green2);
+}
+
+
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .side_wrapper {
+        padding: 5px;
+        height: 100%;
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .side_wrapper {
+        padding: 5px;
+        height: 100%;
+        font-size: 0.8rem;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    .side_wrapper {
+        padding: 5px;
+        height: 100%;
+        font-size: 0.7rem;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .side_wrapper {
+        padding: 5px;
+        height: 100%;
+        font-size: 0.7rem;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .side_wrapper {
+        padding: 5px;
+        height: 100%;
+        font-size: 0.6rem;
+    }
 }
