@@ -1,7 +1,7 @@
 .main_wrapper {
     display: grid;
-    grid-template-columns: 1fr 2fr;
-    width: 100%;
+    grid-template-columns: 150px 2fr;
+    margin: 0px 10%;
 }
 
 .book_card_wrapper {
@@ -30,16 +30,30 @@
     .book_card_wrapper {
         grid-template-columns: 1fr 1fr;
     }
+
 }
 
 @media (min-width: 481px) and (max-width: 767px) {
     .book_card_wrapper {
         grid-template-columns: 1fr;
+        padding: 8px;
     }
+                .main_wrapper {
+                    display: grid;
+                    grid-template-columns: 100px 2fr;
+                    margin: 0px 5%;
+                }
 }
 
 @media (min-width: 320px) and (max-width: 480px) {
     .book_card_wrapper {
         grid-template-columns: 1fr;
+        padding: 8px;
     }
+
+    .main_wrapper {
+                    display: grid;
+                    grid-template-columns: 100px 2fr;
+                    margin: 0px 5%;
+                }
 }

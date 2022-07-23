@@ -1,7 +1,7 @@
 .bookCard {
-  width: 290px;
+  width: 100%;
   height: auto;
-  box-shadow: #dfdfdf 2px 2px 5px;
+  box-shadow: #eaeaea 2px 2px 5px;
   border-radius: var(--rounded);
   padding: 0em;
   line-height: 1.5em;
@@ -9,7 +9,7 @@
   grid-gap: 10px;
   overflow: hidden;
   border: 2px solid var(--green);
-  transition: 350ms ease-in-out;
+  transition: 200ms ease-in-out;
 }
 
 
@@ -20,13 +20,13 @@
 .bookCard:hover {
   border: 2px solid var(--green2);
   transform: scale(1.02);
-  box-shadow: #cacaca 2px 5px 10px;
+  box-shadow: #dfdfdf 2px 5px 10px;
 }
 
 
 .bookImg {
   justify-self: center;
-  border-radius: var(--rounded)
+  border-radius: var(--rounded);
 }
 
 h2 {

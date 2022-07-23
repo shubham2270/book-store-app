@@ -7,6 +7,7 @@
     padding-left: 20px;
     justify-content: space-between;
     z-index: 10;
+    padding: 0px 10%;
 }
 
 .logo {
@@ -23,4 +24,33 @@
     font-size: 1.2rem;
     font-weight: bold;
     cursor: pointer;
+}
+
+
+@media (min-width: 481px) and (max-width: 767px) {
+.main_wrapper {
+        width: 100%;
+        min-height: 10vh;
+        background-color: var(--blue);
+        display: flex;
+        align-items: center;
+        padding-left: 20px;
+        justify-content: space-between;
+        z-index: 10;
+        padding: 0px 5%;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+.main_wrapper {
+        width: 100%;
+        min-height: 10vh;
+        background-color: var(--blue);
+        display: flex;
+        align-items: center;
+        padding-left: 20px;
+        justify-content: space-between;
+        z-index: 10;
+        padding: 0px 5%;
+    }
 }
